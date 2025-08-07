@@ -1,0 +1,52 @@
+simulation:
+  tick_interval_ms: 10      # Simülasyonda bir adımın (tick) kaç milisaniyede bir gerçekleşeceği (örn: 1000 ms = 1 saniye)
+  max_population: 10000       # Simülasyondaki en fazla kişi sayısı (nüfus limiti)
+  start_year: 2025            # Simülasyonun başlayacağı yıl
+  current_year: 2025          # Simülasyonun şu anki yılı (başlangıçta start_year ile aynı)
+
+world:
+  disasters:                  # Dünya çapında yaşanabilecek felaketlerin oranları
+    earthquake_chance: 0.01  # Her adımda deprem olma ihtimali (0.01 = %1)
+    epidemic_chance: 0.02    # Her adımda salgın hastalık olma ihtimali (0.02 = %2)
+    war_chance: 0.03         # Her adımda savaş çıkma ihtimali (0.03 = %3)
+  temperature:                # Dünya sıcaklık aralığı
+    min: -30                 # En düşük sıcaklık (santigrat)
+    max: 50                  # En yüksek sıcaklık (santigrat)
+
+human:
+  max_age: 120                # İnsanların ulaşabileceği maksimum yaş
+  fertility_age_start: 18     # Doğurganlığın başladığı yaş
+  fertility_age_end: 45       # Doğurganlığın sona erdiği yaş
+  aging_rate: 1.0             # Yaşlanma hızı (1.0 = normal, 2.0 = 2 kat hızlı yaşlanma gibi)
+
+attributes:                   # Doğuştan gelen özelliklerin aralıkları
+  intelligence:
+    min: 50                  # Zekâ için minimum değer
+    max: 200                 # Zekâ için maksimum değer
+  strength:
+    min: 30                  # Fiziksel güç için minimum değer
+    max: 150                 # Fiziksel güç için maksimum değer
+  empathy:
+    min: 20                  # Empati yeteneği için minimum değer
+    max: 100                 # Empati yeteneği için maksimum değer
+  creativity:
+    min: 20                  # Yaratıcılık için minimum değer
+    max: 100                 # Yaratıcılık için maksimum değer
+  resilience:
+    min: 20                  # Dayanıklılık için minimum değer
+    max: 100                 # Dayanıklılık için maksimum değer
+
+needs:                        # İnsanların temel ihtiyaçlarının maksimum seviyeleri
+  hunger_max: 100             # Açlık seviyesi maksimum değeri (0 = çok aç, 100 = tok)
+  sleep_max: 100              # Uyku seviyesi maksimum değeri (0 = çok uykusuz, 100 = dinlenmiş)
+  social_max: 100             # Sosyal ihtiyaç seviyesi (0 = yalnız, 100 = sosyalleşmiş)
+  hygiene_max: 100            # Temizlik seviyesi (0 = çok kirli, 100 = temiz)
+
+skills:                       # Becerilerin maksimum seviyeleri
+  communication_max: 100      # İletişim becerisi maksimum değeri
+  crafting_max: 100           # El becerisi (zanaat) maksimum değeri
+  farming_max: 100            # Tarım becerisi maksimum değeri
+
+mutation:                     # Genetik mutasyon parametreleri
+  chance: 0.05                # Yeni doğanlarda mutasyon olma ihtimali (0.05 = %5)
+  impact: 0.001               # Mutasyonun genetik özellikler üzerindeki etkisi oranı (örneğin zekâyı +%0.1 değiştirebilir)
