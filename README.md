@@ -85,11 +85,88 @@ human:
   death_chance_per_year: 0.01
 ```
 
-## 📅 Simülasyon Akışı
+## 📅 Simülasyon Akışı ve Modüller
 
-* Belirlenen yıl ve zaman aralığına göre “saatlik” şekilde ilerler.
-* Her adımda insanlar yaşlanır, ölebilir, çocuk sahibi olabilir.
-* Olaylar (afet, salgın, savaş) belli olasılıklarla tetiklenir.
+Simülasyon aşağıdaki modüller ve öncelik sırasına göre geliştirilmiştir:
+
+### 1. Simülasyon Çekirdeği (`internal/simulation/engine.go`)
+
+- **Amaç:**  
+  - `tick_interval_ms` ile belirlenen aralıkta zaman akışı (tick) mekanizması sağlar.  
+  - Her tick’te yaşayan tüm bireylerin yaş, ihtiyaç, sağlık gibi durumlarını günceller.  
+  - Doğum, ölüm ve popülasyon kontrol mekanizmalarını başlatır.  
+
+- **Neden Öncelikli?**  
+  Simülasyonun temel zaman akışı olmadan diğer modüller çalışamaz.
+
+---
+
+### 2. Yaşam Döngüsü Yönetimi (`internal/simulation/lifecycle.go`)
+
+- **Amaç:**  
+  - İnsanların doğum, yaşlanma, ölüm süreçlerini detaylandırır.  
+  - Üreme, hamilelik ve çocuk doğumu mekanizmalarını simüle eder.  
+  - Yaş sınırı ve sağlık durumuna bağlı ölüm kontrolleri sağlar.  
+
+- **Neden Öncelikli?**  
+  İnsan yaşam döngüsünün doğru yönetimi simülasyonun temelidir.
+
+---
+
+### 3. Olay Yönetimi (`internal/simulation/event_manager.go`)
+
+- **Amaç:**  
+  - Deprem, salgın, savaş gibi rastgele ve süreli olayları simüle eder.  
+  - Bu olayların bireylere ve çevreye etkilerini uygular.  
+
+- **Neden Öncelikli?**  
+  Dinamik olaylar simülasyonun gerçekçiliğini artırır.
+
+---
+
+### 4. Dünya Modeli (`internal/world/`)
+
+- **Amaç:**  
+  - Harita, şehirler, bölgeler ve iklim modellerini oluşturur.  
+  - İnsanların konum ve hareketlerini yönetir.  
+
+- **Neden Öncelikli?**  
+  Coğrafi bağlam simülasyonun fiziksel temelini oluşturur.
+
+---
+
+### 5. Sosyal Etkileşimler (`internal/interaction/`)
+
+- **Amaç:**  
+  - İnsanlar arasındaki ilişkileri ve iletişimi yönetir.  
+  - Aile, arkadaşlık, partnerlik gibi bağları simüle eder.  
+  - Sosyal ihtiyaçları karşılamak için algoritmalar geliştirir.  
+
+- **Neden Önemli?**  
+  Sosyal bağlar birey davranışlarını ve simülasyon dinamiklerini etkiler.
+
+---
+
+### 6. Ekonomi (`internal/economy/`)
+
+- **Amaç:**  
+  - Meslek, gelir, harcama ve ekonomik döngüyü simüle eder.  
+  - İnsanların iş ve gelir durumlarını yönetir.  
+
+- **Neden Önemli?**  
+  Ekonomik faktörler simülasyonun derinliğini artırır.
+
+---
+
+### 7. İsim ve Genetik Modülleri (`internal/person/genetics.go` vb.)
+
+- **Amaç:**  
+  - Genetik kodların nesilden nesile geçişini ve mutasyonları modellemek.  
+  - Genetik yapıların birey özelliklerine etkisini simüle etmek.  
+
+- **Neden Önemli?**  
+  Biyolojik çeşitlilik ve kalıtım simülasyonun gerçekçiliğini sağlar.
+
 
 ## 👥 İsim Verisi
 
